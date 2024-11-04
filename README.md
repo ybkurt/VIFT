@@ -57,7 +57,7 @@ You can change the `net` field in config to target your `nn.Module` object. The 
 
 ## Downloading Pretrained Image and IMU Encoders
 
-We use pretrained image and IMU encoders of [Visual-Selective-VIO] model. Download the model weights from repository and put them under the `pretrained_models` directory.
+We use pretrained image and IMU encoders of [Visual-Selective-VIO](https://github.com/mingyuyng/Visual-Selective-VIO) model. Download the model weights from repository and put them under the `pretrained_models` directory.
 
 
 ### Caching Latents for KITTI Dataset  

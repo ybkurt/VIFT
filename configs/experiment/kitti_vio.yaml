@@ -1,0 +1,31 @@
+
+# @package _global_
+
+# to execute this experiment run:
+# python train.py experiment=example
+
+defaults:
+  - override /data: kitti_vio
+  - override /model: vio
+  - override /callbacks: none
+  - override /trainer: default
+
+# all parameters below will be merged with parameters from default configurations set above
+# this allows you to overwrite only specified parameters
+
+tags: ["kitti_vio", "simple_dense_net"]
+
+seed: 12345
+
+trainer:
+  min_epochs: 2
+  max_epochs: 2
+
+model:
+  net:
+    seq_len: 11
+    width: 512
+    height: 256
+    imu_freq: 10
+
+

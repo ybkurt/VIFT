@@ -1,0 +1,47 @@
+
+_target_: src.models.weighted_vio_module.WeightedVIOLitModule
+
+optimizer:
+  _target_: torch.optim.AdamW
+  _partial_: true
+  lr: 0.0001
+
+scheduler:
+  _target_: torch.optim.lr_scheduler.CosineAnnealingWarmRestarts
+  _partial_: true
+  T_0: 25
+  T_mult: 1
+
+
+
+criterion:
+  _target_: torch.nn.MSELoss
+
+net:
+  _target_: src.models.components.pose_transformer.PoseTransformerInertial
+  input_dim: 256
+  embedding_dim: 768
+  num_layers: 4
+  nhead: 6
+  dim_feedforward: 128
+  dropout: 0.0
+
+metrics_calculator:
+  _target_: src.metrics.kitti_metrics_calculator.KITTIMetricsCalculator
+
+tester:
+  _target_: src.testers.kitti_latent_tester.KITTILatentTester
+  val_seqs: ['05','07', '10']
+  data_dir: ${paths.data_dir}/kitti_data
+  seq_len: 11
+  folder: sequences
+  img_w: 512
+  img_h: 256
+  wrapper_weights_path: ${paths.root_dir}/pretrained_models/vf_512_if_256_3e-05.model
+  device: 'cuda'
+  v_f_len: 512
+  i_f_len: 256
+  use_history_in_eval: True
+
+# compile model for faster training with pytorch 2.0
+compile: false

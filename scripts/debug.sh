@@ -1,0 +1,1 @@
+python src/train.py experiment=latent_kitti_vio logger=tensorboard trainer=gpu +trainer.limit_train_batches=10 +trainer.limit_val_batches=5 +trainer.limit_test_batches=5 +trainer.log_every_n_steps=5 

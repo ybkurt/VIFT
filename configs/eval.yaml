@@ -1,0 +1,18 @@
+# @package _global_
+
+defaults:
+  - _self_
+  - data: latent_kitti_vio # choose datamodule with `test_dataloader()` for evaluation
+  - model: weighted_latent_vio_tf
+  - logger: null
+  - paths: default
+  - extras: default
+  - hydra: default
+  - trainer: default
+
+task_name: "eval"
+
+tags: ["dev"]
+
+# passing checkpoint path is necessary for evaluation
+ckpt_path: ???

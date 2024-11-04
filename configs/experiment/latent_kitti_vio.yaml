@@ -1,0 +1,39 @@
+# @package _global_
+
+# to execute this experiment run:
+# python train.py experiment=latent_kitti_vio
+
+defaults:
+  - override /data: latent_kitti_vio
+  - override /model: latent_vio
+  - override /callbacks: default
+  - override /trainer: default
+
+# all parameters below will be merged with parameters from default configurations set above
+# this allows you to overwrite only specified parameters
+
+tags: ["kitti_latent_vio", "simple_dense_net", "L1"]
+
+seed: 12345
+
+trainer:
+  min_epochs: 20
+  max_epochs: 200
+
+data:
+  batch_size: 128
+  train_loader:
+    root_dir: ${paths.data_dir}/kitti_latent_data/train_10
+  val_loader:
+    root_dir: ${paths.data_dir}/kitti_latent_data/val_10
+  test_loader: 
+    root_dir: ${paths.data_dir}/kitti_latent_data/val_10
+
+model:
+  optimizer:
+    lr: 0.0001
+
+  criterion:
+    _target_: src.metrics.weighted_loss.WeightedMAEPoseLoss
+
+

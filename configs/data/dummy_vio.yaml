@@ -1,0 +1,14 @@
+
+_target_: src.data.vio_datamodule.VIODataModule
+batch_size: 4 # Needs to be divisible by the number of devices (e.g., if in a distributed setup)
+num_workers: 0
+pin_memory: False
+train_loader:
+  _target_: src.data.components.random_vio_dataset.RandomVIODataset
+  _partial_: false
+val_loader:
+  _target_: src.data.components.random_vio_dataset.RandomVIODataset
+  _partial_: false
+test_loader: 
+  _target_: src.data.components.random_vio_dataset.RandomVIODataset
+  _partial_: false

@@ -44,7 +44,7 @@ pip install -r requirements.txt
 
 ```bash
 cd data
-sh prepare_data.sh
+sh data_prep.sh
 ```
 
 This script will put the KITTI dataset under `data/kitti_data` folder. 
